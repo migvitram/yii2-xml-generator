@@ -1,0 +1,32 @@
+{
+    "name": "migvitram/yii2-xml-generator",
+    "description": "to generate xml files on-the-fly",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mihail Korchemliuk",
+            "email": "migvitram@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "migvitram\\simpleshop\\": "src"
+        }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://path.to/your/repo"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

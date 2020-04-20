@@ -25,7 +25,19 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+After installation, modify the web.php config file, modules section:
 
 ```php
-<?= \migvitram\simpleshop\AutoloadExample::widget(); ?>```
+ 'modules' => [
+    ...
+    'xmlGenerator' => [
+        'class' => 'migvitram\xmlgenerator\XmlGeneratorModule',
+        'pages' => ['\app\models\Page', 'getPagesForSitemap'],
+        'atom' => ['\app\models\Page', 'getItemsForAtom'],
+        'rss' => ['\app\models\Page', 'getItemsForRss'],
+    ]
+ ]
+```
+
+, where can be passed callback function to retrieve the array of items for
+sitemap.xml, atom.xml and rss.xml files.

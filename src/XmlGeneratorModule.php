@@ -1,0 +1,85 @@
+<?php
+
+namespace migvitram\xmlgenerator;
+
+use yii\base\Module as Basemodule;
+
+/**
+ * Class XmlGeneratorModule
+ * @package migvitram\xmlgenerator
+ */
+class XmlGeneratorModule extends BaseModule
+{
+    /** @var array  $pages  -  callback to retrieve pages for sitemap.xml */
+    public $pages;
+
+    /** @var array  $pagesArray = result array of urls for sitemap.xml */
+    public $pagesArray = [];
+
+    /** @var array $atom -  */
+    public $atom;
+
+    /** @var array $atomArray - result array of urls for atom.xml */
+    public $atomArray = [];
+
+    /** @var  $rss */
+    public $rss;
+
+    /** @var array $rssArray */
+    public $rssArray = [];
+
+    /** @var array The rules to be used in URL management. */
+    public $urlRules = [
+        [
+            'pattern' => 'sitemap',
+            'route' => 'main/index',
+            'suffix' => '.xml',
+        ],
+        [
+            'pattern' => 'atom',
+            'route' => 'main/atom',
+            'suffix' => '.xml',
+        ],
+        [
+            'pattern' => 'rss',
+            'route' => 'main/rss',
+            'suffix' => '.xml',
+        ],
+    ];
+
+    /**
+     *
+     */
+    public function init()
+    {
+        // pages for sitemap.xml
+        if ( is_callable($this->pages) ) {
+            $this->pagesArray = call_user_func($this->pages);
+
+            array_walk($this->pagesArray, function( &$value, $key ){
+                $value = (object)$value;
+            });
+        }
+
+        // items for atom.xml
+        if ( is_callable($this->atom) ) {
+            $this->atomArray = call_user_func($this->atom);
+
+            array_walk($this->atomArray, function( &$value, $key ){
+                $value = (object)$value;
+            });
+        }
+
+        // items for atom.xml
+        if ( is_callable($this->rss) ) {
+            $this->rssArray = call_user_func($this->rss);
+
+            array_walk($this->rssArray, function( &$value, $key ){
+                $value = (object)$value;
+            });
+        }
+
+        parent::init();
+    }
+
+}

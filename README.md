@@ -59,3 +59,49 @@ that format :
 ```
 
 , according to [sitemap protocol](https://www.sitemaps.org/protocol.html).
+
+For example, method `getPagesForSitemap` in Page model can looks like:
+
+```php
+ namespace your\app\namespace;
+ 
+ use yii\base\Model;
+ use yii\helpers\Url;
+ use migvitram\xmlgenerator\models\SitemapSchema;
+ 
+ class Page extends Model
+ {
+     /**
+      * @return array
+      */
+     public static function getPagesForSitemap()
+     {
+         return $pages = [
+             [
+                 'loc' => Url::base(true),
+                 'lastmod' => '2016-10-10',
+                 'changefreq' => SitemapSchema::CHANG_FREQ_DAY,
+                 'priority' => 0.8,
+             ],
+             [
+                 'loc' => Url::base(true).'/site/about',
+                 'lastmod' => '2016-10-10',
+                 'changefreq' => SitemapSchema::CHANG_FREQ_YEAR,
+                 'priority' => 0.8,
+             ],
+             [
+                 'loc' => Url::base(true).'/site/contact',
+                 'lastmod' => '2016-10-10',
+                 'changefreq' => SitemapSchema::CHANG_FREQ_MONTH,
+                 'priority' => 0.8,
+             ],
+             [
+                 'loc' => Url::base(true).'/site/news',
+                 'lastmod' => '2016-10-10',
+                 'changefreq' => 'monthly',
+                 'priority' => 0.8,
+             ],
+         ];
+     }
+ }
+```

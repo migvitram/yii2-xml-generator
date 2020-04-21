@@ -19,12 +19,6 @@
             "migvitram\\xmlgenerator\\": "src"
         }
     },
-    "repositories":[
-        {
-            "type": "git",
-            "url": "https://github.com/migvitram/yii2-xml-generator.git"
-        }
-    ],
     "extra": {
         "bootstrap": "migvitram\\xmlgenerator\\Bootstrap",
         "branch-alias": {

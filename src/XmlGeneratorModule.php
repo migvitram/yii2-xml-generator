@@ -2,7 +2,7 @@
 
 namespace migvitram\xmlgenerator;
 
-use yii\base\Module as Basemodule;
+use yii\base\Module as BaseModule;
 
 /**
  * Class XmlGeneratorModule
@@ -16,16 +16,16 @@ class XmlGeneratorModule extends BaseModule
     /** @var array  $pagesArray = result array of urls for sitemap.xml */
     public $pagesArray = [];
 
-    /** @var array $atom -  */
+    /** @var array $atom - callback to retrieve pages for atom.xml */
     public $atom;
 
     /** @var array $atomArray - result array of urls for atom.xml */
     public $atomArray = [];
 
-    /** @var  $rss */
+    /** @var array $rss  -  callback to retrieve pages for rss.xml */
     public $rss;
 
-    /** @var array $rssArray */
+    /** @var array $rssArray - result array of urls for rss.xml */
     public $rssArray = [];
 
     /** @var array The rules to be used in URL management. */
@@ -48,7 +48,7 @@ class XmlGeneratorModule extends BaseModule
     ];
 
     /**
-     *
+     * Initiation method for Module
      */
     public function init()
     {

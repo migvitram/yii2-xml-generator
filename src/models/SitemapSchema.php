@@ -10,7 +10,7 @@ use yii\base\Model;
  */
 class SitemapSchema extends Model
 {
-    /** Change frequency */
+    /** Change frequency variables for sitemap.xml <changefreq> section */
     const CHANG_FREQ_ALWAYS = 'always';
     const CHANG_FREQ_HOUR   = 'hourly';
     const CHANG_FREQ_DAY    = 'daily';

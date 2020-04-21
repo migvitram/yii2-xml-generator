@@ -9,6 +9,11 @@ use yii\base\Module;
 
 class Bootstrap implements BootstrapInterface
 {
+    /** @var array Model's map */
+    private $_modelMap = [
+        'SitemapSchema' => 'migvitram\xmlgenerator\models\SitemapSchema',
+    ];
+
     /**
      * To bootstrap out module
      *
@@ -18,6 +23,19 @@ class Bootstrap implements BootstrapInterface
     {
         if ( $app->hasModule('xmlGenerator') && ($module = $app->getModule('xmlGenerator')) instanceof Module ) {
 
+            // declare the models
+            $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
+
+            foreach ($this->_modelMap as $name => $definition) {
+
+                $class = "migvitram\\xmlgenerator\\models\\" . $name;
+                Yii::$container->set($class, $definition);
+
+                $modelName = is_array($definition) ? $definition['class'] : $definition;
+                $module->modelMap[$name] = $modelName;
+            }
+
+            // adding route rules for module
             $configUrlRule = [
                 'rules'  => $module->urlRules,
             ];

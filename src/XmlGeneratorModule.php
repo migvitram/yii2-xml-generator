@@ -47,6 +47,9 @@ class XmlGeneratorModule extends BaseModule
         ],
     ];
 
+    /** @var array Model map */
+    public $modelMap = [];
+
     /**
      * Initiation method for Module
      */

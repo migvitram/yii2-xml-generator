@@ -2,7 +2,7 @@
     "name": "migvitram/yii2-xml-generator",
     "description": "Module for generation xml files on-the-fly (e.g. sitemap.xml)",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension"],
+    "keywords": ["yii2","extension","sitemap"],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.0"
+        "yiisoft/yii2": "^2.0.13"
     },
     "minimum-stability": "dev",
     "autoload": {
@@ -26,6 +26,10 @@
         }
     ],
     "extra": {
-        "bootstrap": "migvitram\\xmlgenerator\\Bootstrap"
+        "bootstrap": "migvitram\\xmlgenerator\\Bootstrap",
+        "branch-alias": {
+          "dev-master": "master",
+          "dev-develop": "develop"
+        }
     }
 }

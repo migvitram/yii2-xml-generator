@@ -7,3 +7,7 @@
 ## Version 0.1.2 [22 April 2020]
 
 - Fix bugs and updated atom.xml template
+
+## Version 0.1.3 [22 April 2020]
+
+- Fix bugs

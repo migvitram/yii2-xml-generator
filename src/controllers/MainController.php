@@ -73,7 +73,8 @@ class MainController extends Controller
         $response->format = Response::FORMAT_RAW;
         $response->headers->add('Content-Type', 'text/xml');
         $response->data = $this->renderPartial('atomXml', [
-            'items' => $atomItems
+            'main' => $atomItems['main'],
+            'items' => $atomItems['items']
         ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace migvitram\xmlgenerator\models;
+namespace migvitram\xmlgenerator\models\schemas;
 
 use yii\base\Model;
 

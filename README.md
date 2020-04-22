@@ -16,7 +16,7 @@ php composer.phar require --prefer-dist migvitram/yii2-xml-generator "*"
 or add
 
 ```
-"migvitram/yii2-xml-generator": "@dev"
+"migvitram/yii2-xml-generator": "*"
 ```
 
 to the require-dev section of your `composer.json` file.
@@ -105,3 +105,53 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
      }
  }
 ```
+
+Method to get data for atom.xml must return array with `main`, `items` required fields :
+
+```php
+ class Page extends Model
+ {
+     /**
+      * @return array
+      */
+     public static function getItemsForAtom()
+     {
+         // gather all needed news
+         
+         return $atomItems = [
+             'main' => [
+                 'title'     => 'Feed title',
+                 'link'      => 'your/site/url',
+                 'updated'   => '654-68-48T6:50Z',
+                 'author'    => 'John Doe',
+                 'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
+             ],
+             'items' => [
+                 [
+                     'title' => '1 title of entry',
+                     'link' => 'http://example.org/2003/12/13/atom01',
+                     'updated' => '2016-10-10T6:50Z',
+                     'summary' => 'Some summary about article',
+                     'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
+                 ],
+                 [
+                     'title' => '2 title of entry',
+                     'link' => 'http://example.org/2003/12/13/atom02',
+                     'updated' => '2016-10-10T6:50Z',
+                     'summary' => 'Some summary about article',
+                     'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
+                 ],
+                 [
+                     'title' => '3 title of entry',
+                     'link' => 'http://example.org/2003/12/13/atom03',
+                     'updated' => '2016-10-10T6:50Z',
+                     'summary' => 'Some summary about article',
+                     'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
+                 ],
+             ],
+         ];
+     }
+ }
+```
+
+, according to atom.xml [documentation](https://validator.w3.org/feed/docs/atom.html#sampleFeed). 

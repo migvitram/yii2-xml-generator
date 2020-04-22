@@ -22,8 +22,8 @@
     "extra": {
         "bootstrap": "migvitram\\xmlgenerator\\Bootstrap",
         "branch-alias": {
-          "dev-master": "master",
-          "dev-develop": "develop"
+          "master": "master",
+          "develop": "develop"
         }
     }
 }

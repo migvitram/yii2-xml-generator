@@ -2,6 +2,7 @@
 
 namespace migvitram\xmlgenerator;
 
+use migvitram\xmlgenerator\models\schemas\AtomSchema;
 use yii\base\Module as BaseModule;
 
 /**
@@ -71,11 +72,25 @@ class XmlGeneratorModule extends BaseModule
             $this->atomArray = call_user_func($this->atom);
 
             array_walk($this->atomArray, function( &$value, $key ){
+
                 $value = (object)$value;
+
+                if ($key == 'items') {
+
+                    // for the 'main' and 'items' section of array
+                    array_walk($value, function( &$innerVal, $innerKey){
+                        $innerVal = (object)$innerVal;
+                    });
+                }
             });
         }
 
-        // items for atom.xml
+        // if empty need default main section
+        if ( empty($this->atomArray) ) {
+            $this->atomArray = ['main' => (object)AtomSchema::getDefaultMainParams()];
+        }
+
+        // items for rss.xml
         if ( is_callable($this->rss) ) {
             $this->rssArray = call_user_func($this->rss);
 

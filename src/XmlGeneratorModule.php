@@ -10,6 +10,8 @@ use yii\base\Module as BaseModule;
  */
 class XmlGeneratorModule extends BaseModule
 {
+    const VERSION = '0.1.1';
+
     /** @var array  $pages  -  callback to retrieve pages for sitemap.xml */
     public $pages;
 

@@ -1,6 +1,6 @@
 Simple xml module for Yii2
 ==========================
-to generate xml files on-the-fly
+Module for xml files generation on-the-fly (e.g. sitemap.xml)
 
 Installation
 ------------
@@ -60,7 +60,7 @@ that format :
 
 , according to [sitemap protocol](https://www.sitemaps.org/protocol.html).
 
-For example, method `getPagesForSitemap` in Page model can looks like:
+For example, method `getPagesForSitemap` in Page model can be looks like:
 
 ```php
  namespace your\app\namespace;

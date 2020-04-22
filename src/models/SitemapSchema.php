@@ -18,6 +18,11 @@ class SitemapSchema extends Model
     const CHANG_FREQ_MONTH  = 'monthly';
     const CHANG_FREQ_YEAR   = 'yearly';
     const CHANG_FREQ_NEVER  = 'never';
-    
-    
+
+    /** Fields of link */
+    const LOCATION_FIELD    = 'loc' ;
+    const LAST_MODIFY_FIELD = 'lastmod' ;
+    const CHANGE_FREQUENCY_FIELD = 'changefreq' ;
+    const PRIORITY_FIELD    = 'priority' ;
+
 }

@@ -1,12 +1,35 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL ?>
-<?php /*echo '<?xml-stylesheet type="text/css" href="/css/doc.css"?>' . PHP_EOL */?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<?php foreach ($items as $item): ?>
-    <url>
-        <loc><?= $item->loc ?></loc>
-        <lastmod><?= $item->lastmod ?></lastmod>
-        <changefreq><?= $item->changefreq ?></changefreq>
-        <priority><?= $item->priority ?></priority>
-    </url>
-<?php endforeach; ?>
-</urlset>
+<rss version="2.0">
+    <?php if ( $channel ) { ?>
+    <channel>
+        <title><?= $channel->title ?></title>
+        <link><?= $channel->link ?></link>
+        <description><?= $channel->description ?></description>
+        <?php if ( $channel->image ) { ?>
+        <image>
+            <url><?= $channel->image->url ?></url>
+            <title><?= $channel->image->title ?></title>
+            <link><?= $channel->image->link ?></link>
+        </image>
+        <?php } ?>
+
+        <?php if ( $channel->hasOptionalProperties() ) {
+            foreach ($channel->getOptionalPropertiesNames() as $key => $propertyName) { ?>
+        <<?=$propertyName?>><?= $channel->{$propertyName} ?></<?=$propertyName?>>
+        <?php } } ?>
+
+        <?php foreach ($channel->items as $item): ?>
+        <item>
+            <title><?= $item->title ?></title>
+            <link><?= $item->link ?></link>
+            <description><?= $item->description ?></description>
+            <?php if ( $item->hasOptionalProperties() ) {
+                foreach ($item->getOptionalPropertiesNames() as $key => $propertyName) { ?>
+            <<?=$propertyName?>><?= $item->{$propertyName} ?></<?=$propertyName?>>
+            <?php } } ?>
+        </item>
+        <?php endforeach; ?>
+
+    </channel>
+    <?php } ?>
+</rss>

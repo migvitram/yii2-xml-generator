@@ -3,6 +3,8 @@
 namespace migvitram\xmlgenerator;
 
 use migvitram\xmlgenerator\models\schemas\AtomSchema;
+use migvitram\xmlgenerator\models\schemas\RssChannel;
+use migvitram\xmlgenerator\models\schemas\RssSchema;
 use yii\base\Module as BaseModule;
 
 /**
@@ -28,8 +30,8 @@ class XmlGeneratorModule extends BaseModule
     /** @var array $rss  -  callback to retrieve pages for rss.xml */
     public $rss;
 
-    /** @var array $rssArray - result array of urls for rss.xml */
-    public $rssArray = [];
+    /** @var RssChannel|null $rssArray - result object for rss.xml */
+    public $rssArray;
 
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
@@ -92,11 +94,9 @@ class XmlGeneratorModule extends BaseModule
 
         // items for rss.xml
         if ( is_callable($this->rss) ) {
-            $this->rssArray = call_user_func($this->rss);
 
-            array_walk($this->rssArray, function( &$value, $key ){
-                $value = (object)$value;
-            });
+            $params = call_user_func($this->rss);
+            $this->rssArray = RssSchema::initiateChannel( $params );
         }
 
         parent::init();

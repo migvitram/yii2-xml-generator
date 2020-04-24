@@ -25,7 +25,9 @@ class MainController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    //'logout' => ['post'],
+                    //'index' => ['get'],
+                    //'atom' => ['get'],
+                    //'rss' => ['get'],
                 ],
             ],
         ];
@@ -91,7 +93,7 @@ class MainController extends Controller
         $response->format = Response::FORMAT_RAW;
         $response->headers->add('Content-Type', 'text/xml');
         $response->data = $this->renderPartial('rssXml', [
-            'items' => $rssItems
+            'channel' => $rssItems
         ]);
     }
 }

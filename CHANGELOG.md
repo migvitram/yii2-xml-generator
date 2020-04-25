@@ -16,5 +16,6 @@
 
 - Changed Sitemap, Atom and Rss classes initial data format
 - Added model classes and trait for xml elements with optional params
+- Updated models classes namespaces
 - Updated module and bootstrap classes
 - Updated documentation

@@ -67,7 +67,7 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
  
  use yii\base\Model;
  use yii\helpers\Url;
- use migvitram\xmlgenerator\models\SitemapSchema;
+ use migvitram\xmlgenerator\models\schemas\SitemapSchema;
  
  class Page extends Model
  {

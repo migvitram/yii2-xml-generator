@@ -53,12 +53,12 @@ class MainController extends Controller
     {
         $response = Yii::$app->response;
 
-        $pages = XmlGeneratorModule::getInstance()->pagesArray;
+        $pages = XmlGeneratorModule::getInstance()->sitemapInstance;
 
         $response->format = Response::FORMAT_RAW;
         $response->headers->add('Content-Type', 'text/xml');
         $response->data = $this->renderPartial('sitemapXml', [
-            'items' => $pages
+            'sitemap' => $pages
         ]);
     }
 

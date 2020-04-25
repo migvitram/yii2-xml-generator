@@ -25,4 +25,13 @@ class SitemapSchema extends Model
     const CHANGE_FREQUENCY_FIELD = 'changefreq' ;
     const PRIORITY_FIELD    = 'priority' ;
 
+    /**
+     * @param array $params
+     * @return SitemapXml
+     */
+    public static function initiateSitemapXmlInstance( array $params )
+    {
+        return new SitemapXml( (object)$params );
+    }
+
 }

@@ -5,6 +5,7 @@ namespace migvitram\xmlgenerator;
 use migvitram\xmlgenerator\models\schemas\AtomSchema;
 use migvitram\xmlgenerator\models\schemas\RssChannel;
 use migvitram\xmlgenerator\models\schemas\RssSchema;
+use migvitram\xmlgenerator\models\schemas\SitemapSchema;
 use yii\base\Module as BaseModule;
 
 /**
@@ -18,8 +19,8 @@ class XmlGeneratorModule extends BaseModule
     /** @var array  $pages  -  callback to retrieve pages for sitemap.xml */
     public $pages;
 
-    /** @var array  $pagesArray = result array of urls for sitemap.xml */
-    public $pagesArray = [];
+    /** @var array  $sitemapInstance = result array of urls for sitemap.xml */
+    public $sitemapInstance = [];
 
     /** @var array $atom - callback to retrieve pages for atom.xml */
     public $atom;
@@ -62,11 +63,9 @@ class XmlGeneratorModule extends BaseModule
     {
         // pages for sitemap.xml
         if ( is_callable($this->pages) ) {
-            $this->pagesArray = call_user_func($this->pages);
 
-            array_walk($this->pagesArray, function( &$value, $key ){
-                $value = (object)$value;
-            });
+            $params = call_user_func($this->pages);
+            $this->sitemapInstance = SitemapSchema::initiateSitemapXmlInstance($params);
         }
 
         // items for atom.xml

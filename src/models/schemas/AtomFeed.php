@@ -4,21 +4,22 @@ namespace migvitram\xmlgenerator\models\schemas;
 
 use yii\base\Model;
 
-class RssItem extends Model
+/**
+ * Class AtomFeed
+ * @package migvitram\xmlgenerator\models\schemas
+ */
+class AtomFeed extends Model
 {
     use xmlElementWithOptionalProperties;
 
-    /** @var string|null $title */
-    public $title;
+    /** @var   */
+    public $title, $link, $updated, $id;
 
-    /** @var string|null $link */
-    public $link;
-
-    /** @var string|null $description */
-    public $description;
+    /** @var array|bool $items */
+    public $items = [];
 
     /**
-     * RssItem constructor.
+     * AtomFeed constructor.
      * @param \stdClass $params
      */
     public function __construct( \stdClass $params )
@@ -27,9 +28,18 @@ class RssItem extends Model
 
             if ( ! property_exists(self::class, $paramName) ) {
                 $this->optionalProperties[$paramName] = $param;
-            } else {
+            } elseif ( $paramName != 'items' ) {
                 $this->{$paramName} = $param;
             }
+        }
+
+        if ( $items = $params->items ?? false ) {
+            $this->items = $items;
+
+            array_walk($this->items, function(&$value, $key){
+                //$value = (object)$value;
+                $value = new AtomItem( (object)$value );
+            });
         }
     }
 

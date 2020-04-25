@@ -70,13 +70,12 @@ class MainController extends Controller
     {
         $response = Yii::$app->response;
 
-        $atomItems = XmlGeneratorModule::getInstance()->atomArray;
+        $atomFeed = XmlGeneratorModule::getInstance()->atomInstance;
 
         $response->format = Response::FORMAT_RAW;
         $response->headers->add('Content-Type', 'text/xml');
         $response->data = $this->renderPartial('atomXml', [
-            'main' => $atomItems['main'] ?? [],
-            'items' => $atomItems['items'] ?? []
+            'feed' => $atomFeed
         ]);
     }
 
@@ -88,12 +87,12 @@ class MainController extends Controller
     {
         $response = Yii::$app->response;
 
-        $rssItems = XmlGeneratorModule::getInstance()->rssArray;
+        $rssChannel = XmlGeneratorModule::getInstance()->rssInstance;
 
         $response->format = Response::FORMAT_RAW;
         $response->headers->add('Content-Type', 'text/xml');
         $response->data = $this->renderPartial('rssXml', [
-            'channel' => $rssItems
+            'channel' => $rssChannel
         ]);
     }
 }

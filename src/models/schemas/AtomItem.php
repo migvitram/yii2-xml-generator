@@ -4,7 +4,7 @@ namespace migvitram\xmlgenerator\models\schemas;
 
 use yii\base\Model;
 
-class RssItem extends Model
+class AtomItem extends Model
 {
     use xmlElementWithOptionalProperties;
 
@@ -14,8 +14,12 @@ class RssItem extends Model
     /** @var string|null $link */
     public $link;
 
-    /** @var string|null $description */
-    public $description;
+    public $id;
+
+    public $updated;
+
+    /** @var string|null $summary */
+    public $summary;
 
     /**
      * RssItem constructor.

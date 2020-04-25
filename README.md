@@ -76,7 +76,7 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
       */
      public static function getPagesForSitemap()
      {
-         return $pages = [
+         return [
              [
                  'loc' => Url::base(true),
                  'lastmod' => '2016-10-10',
@@ -106,9 +106,65 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
  }
 ```
 
-Method to get data for atom.xml must return array with `main`, `items` required fields :
+Method to get data fro rss.xml must return array with next required fields :
 
 ```php
+
+use migvitram\xmlgenerator\models\schemas\RssSchema;
+
+class Page extends Model
+ {
+     /**
+      * @return array
+      */
+     public static function getItemsForRss()
+     {
+         // gather all needed news
+         
+         return [
+             RssSchema::TITLE_FIELD    => 'some title',  // RssSchema constant for field name can be used
+             RssSchema::LINK_FIELD    => 'soem link /',
+             RssSchema::DESCRIPTION_FIELD    => 'description here',
+             'image' => [
+                 'title' => 'aodfijoisdjf IMAGE',
+                 'link' => Url::base(true).'/aodfijoisdjf987',
+                 'url' => 'aodifj/asodifj.sod'
+             ],
+             'language' => 'ru',
+             'items' => [
+                 [
+                     RssSchema::TITLE_FIELD => '1 title of entry',
+                     RssSchema::LINK_FIELD => 'http://example.org/2003/12/13/atom03',
+                     RssSchema::DESCRIPTION_FIELD => 'asdf joiasdjf oiajsdfa9s8dhf ajksdnf admfa suidhf9 ashd9f8h',
+                     'someOption' => 'asdfoij'
+                 ],
+                 [
+                     RssSchema::TITLE_FIELD  => '2 title of entry',
+                     RssSchema::LINK_FIELD  => 'http://example.org/2003/12/13/atom03',
+                     RssSchema::DESCRIPTION_FIELD  => 'asdf joiasdjf oiajsdfa9s8dhf ajksdnf admfa suidhf9 ashd9f8h',
+                     'author' => 'ADFd Adfid',
+                 ],
+                 [
+                     RssSchema::TITLE_FIELD  => '3 title of entry',
+                     RssSchema::LINK_FIELD  => 'http://example.org/2003/12/13/atom03',
+                     RssSchema::DESCRIPTION_FIELD  => 'asdf joiasdjf oiajsdfa9s8dhf ajksdnf admfa suidhf9 ashd9f8h',
+                     'comments' => 'aodsfijoasidfjoij/aoidjsfoijadf/aoidsjf',
+                 ],
+             ],
+         ];
+     }
+ }
+
+```
+
+items and channel sections can have optional fields, according to  rss [documentation](https://validator.w3.org/feed/docs/rss2.html)
+
+Method to get data for atom.xml must return array with Atom feed required fields and required `items` array :
+
+```php
+
+use migvitram\xmlgenerator\models\schemas\AtomSchema;
+
  class Page extends Model
  {
      /**
@@ -118,21 +174,19 @@ Method to get data for atom.xml must return array with `main`, `items` required 
      {
          // gather all needed news
          
-         return $atomItems = [
-             'main' => [
-                 'title'     => 'Feed title',
-                 'link'      => 'your/site/url',
-                 'updated'   => '654-68-48T6:50Z',
-                 'author'    => 'John Doe',
-                 'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
-             ],
+         return [
+             'title'     => 'Feed title',
+             'link'      => 'your/site/url',
+             'updated'   => '2020-04-10T11:50Z',
+             'author'    => 'John Doe',
+             'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
              'items' => [
                  [
-                     'title' => '1 title of entry',
-                     'link' => 'http://example.org/2003/12/13/atom01',
-                     'updated' => '2016-10-10T6:50Z',
-                     'summary' => 'Some summary about article',
-                     'id'    => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
+                     AtomSchema::ENTRY_TITLE_FIELD  => '1 title of entry',  // AtomSchema constant for field name can be used 
+                     AtomSchema::ENTRY_LINK_FIELD  => 'http://example.org/2003/12/13/atom01',
+                     AtomSchema::ENTRY_UPDATE_FIELD  => '2016-10-10T6:50Z',
+                     AtomSchema::ENTRY_SUMMARY_FIELD  => 'Some summary about article',
+                     AtomSchema::ENTRY_ID_FIELD        => 'urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6 or some your own',
                  ],
                  [
                      'title' => '2 title of entry',

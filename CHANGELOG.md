@@ -11,3 +11,10 @@
 ## Version 0.1.3 [22 April 2020]
 
 - Fix bugs
+
+## Version 1.0.0 [25 April 2020]
+
+- Changed Sitemap, Atom and Rss classes initial data format
+- Added model classes and trait for xml elements with optional params
+- Updated module and bootstrap classes
+- Updated documentation

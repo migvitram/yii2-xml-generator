@@ -25,15 +25,25 @@ class AtomSchema extends Model
     const ENTRY_SUMMARY_FIELD   = 'summary' ;
 
     /**
+     * @param array $params
+     * @return AtomFeed
+     */
+    public static function initiateFeed( array $params )
+    {
+        return new AtomFeed( (object)$params );
+    }
+
+    /**
      * Method to get date in the '2020-00-00T12:00Z' format
      * @param $dateTime
+     * @param $format
      * @param null $timeZone
      * @return string
      */
-    public static function formatTheDateField( $dateTime, $timeZone = null )
+    public static function formatTheDateField( $dateTime, $format = DATE_ATOM, $timeZone = null )
     {
         if ( is_int($dateTime) ) {
-            return date('Y-m-d', $dateTime). 'T'.date('H:i:S');
+            return date($format, $dateTime);
         }
 
         return '';

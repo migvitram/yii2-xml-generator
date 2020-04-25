@@ -11,7 +11,9 @@ class Bootstrap implements BootstrapInterface
 {
     /** @var array Model's map */
     private $_modelMap = [
-        'SitemapSchema' => 'migvitram\xmlgenerator\models\SitemapSchema',
+        'SitemapSchema'     => 'migvitram\xmlgenerator\models\schemas\SitemapSchema',
+        'AtomSchema'        => 'migvitram\xmlgenerator\models\schemas\AtomSchema',
+        'RssSchema'         => 'migvitram\xmlgenerator\models\schemas\RssSchema',
     ];
 
     /**

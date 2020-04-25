@@ -3,6 +3,9 @@
 namespace migvitram\xmlgenerator;
 
 use migvitram\xmlgenerator\models\schemas\AtomSchema;
+use migvitram\xmlgenerator\models\schemas\RssChannel;
+use migvitram\xmlgenerator\models\schemas\RssSchema;
+use migvitram\xmlgenerator\models\schemas\SitemapSchema;
 use yii\base\Module as BaseModule;
 
 /**
@@ -16,20 +19,20 @@ class XmlGeneratorModule extends BaseModule
     /** @var array  $pages  -  callback to retrieve pages for sitemap.xml */
     public $pages;
 
-    /** @var array  $pagesArray = result array of urls for sitemap.xml */
-    public $pagesArray = [];
+    /** @var array  $sitemapInstance = result array of urls for sitemap.xml */
+    public $sitemapInstance = [];
 
     /** @var array $atom - callback to retrieve pages for atom.xml */
     public $atom;
 
-    /** @var array $atomArray - result array of urls for atom.xml */
-    public $atomArray = [];
+    /** @var array $atomInstance - result array of urls for atom.xml */
+    public $atomInstance;
 
     /** @var array $rss  -  callback to retrieve pages for rss.xml */
     public $rss;
 
-    /** @var array $rssArray - result array of urls for rss.xml */
-    public $rssArray = [];
+    /** @var RssChannel|null $rssInstance - result object for rss.xml */
+    public $rssInstance;
 
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
@@ -60,43 +63,23 @@ class XmlGeneratorModule extends BaseModule
     {
         // pages for sitemap.xml
         if ( is_callable($this->pages) ) {
-            $this->pagesArray = call_user_func($this->pages);
 
-            array_walk($this->pagesArray, function( &$value, $key ){
-                $value = (object)$value;
-            });
+            $params = call_user_func($this->pages);
+            $this->sitemapInstance = SitemapSchema::initiateSitemapXmlInstance($params);
         }
 
         // items for atom.xml
         if ( is_callable($this->atom) ) {
-            $this->atomArray = call_user_func($this->atom);
 
-            array_walk($this->atomArray, function( &$value, $key ){
-
-                $value = (object)$value;
-
-                if ($key == 'items') {
-
-                    // for the 'main' and 'items' section of array
-                    array_walk($value, function( &$innerVal, $innerKey){
-                        $innerVal = (object)$innerVal;
-                    });
-                }
-            });
-        }
-
-        // if empty need default main section
-        if ( empty($this->atomArray) ) {
-            $this->atomArray = ['main' => (object)AtomSchema::getDefaultMainParams()];
+            $params = call_user_func($this->atom);
+            $this->atomInstance = AtomSchema::initiateFeed($params);
         }
 
         // items for rss.xml
         if ( is_callable($this->rss) ) {
-            $this->rssArray = call_user_func($this->rss);
 
-            array_walk($this->rssArray, function( &$value, $key ){
-                $value = (object)$value;
-            });
+            $params = call_user_func($this->rss);
+            $this->rssInstance = RssSchema::initiateChannel( $params );
         }
 
         parent::init();

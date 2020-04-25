@@ -14,7 +14,7 @@ use yii\base\Module as BaseModule;
  */
 class XmlGeneratorModule extends BaseModule
 {
-    const VERSION = '0.1.3';
+    const VERSION = '1.0.0';
 
     /** @var array  $pages  -  callback to retrieve pages for sitemap.xml */
     public $pages;

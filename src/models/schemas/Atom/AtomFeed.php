@@ -1,7 +1,8 @@
 <?php
 
-namespace migvitram\xmlgenerator\models\schemas;
+namespace migvitram\xmlgenerator\models\schemas\Atom;
 
+use migvitram\xmlgenerator\models\schemas\xmlElementWithOptionalProperties;
 use yii\base\Model;
 
 /**

@@ -2,10 +2,10 @@
 
 namespace migvitram\xmlgenerator;
 
-use migvitram\xmlgenerator\models\schemas\AtomSchema;
-use migvitram\xmlgenerator\models\schemas\RssChannel;
-use migvitram\xmlgenerator\models\schemas\RssSchema;
-use migvitram\xmlgenerator\models\schemas\SitemapSchema;
+use migvitram\xmlgenerator\models\schemas\Atom\AtomSchema;
+use migvitram\xmlgenerator\models\schemas\Rss\RssChannel;
+use migvitram\xmlgenerator\models\schemas\Rss\RssSchema;
+use migvitram\xmlgenerator\models\schemas\Sitemap\SitemapSchema;
 use yii\base\Module as BaseModule;
 
 /**

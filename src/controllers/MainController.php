@@ -11,7 +11,7 @@ use yii\web\Response;
 
 /**
  * Class MainController
- * main controller for response with simemap.xml, atom.xml and rss.xml files
+ * main controller for response with sitemap.xml, atom.xml and rss.xml files
  * @package migvitram\xmlgenerator\controllers
  */
 class MainController extends Controller

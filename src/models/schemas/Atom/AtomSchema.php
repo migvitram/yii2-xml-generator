@@ -1,6 +1,6 @@
 <?php
 
-namespace migvitram\xmlgenerator\models\schemas;
+namespace migvitram\xmlgenerator\models\schemas\Atom;
 
 use yii\base\Model;
 
@@ -23,6 +23,16 @@ class AtomSchema extends Model
     const ENTRY_LINK_FIELD      = 'link ' ;
     const ENTRY_UPDATE_FIELD    = 'updated' ;
     const ENTRY_SUMMARY_FIELD   = 'summary' ;
+
+    /** Required feed fields */
+    const REQUIRED_FEED_FIELDS  = [
+        self::MAIN_ID_FIELD, self::MAIN_TITLE_FIELD, self::MAIN_UPDATED_FIELD
+    ];
+
+    /** Recommended feed fields */
+    const RECOMENDED_FEED_FIELDS = [
+        self::MAIN_AUTHOR_FIELD, self::MAIN_LINK_FIELD
+    ];
 
     /**
      * @param array $params
@@ -47,19 +57,5 @@ class AtomSchema extends Model
         }
 
         return '';
-    }
-
-    /**
-     * @return array
-     */
-    public static function getDefaultMainParams()
-    {
-        return [
-            self::MAIN_TITLE_FIELD      => '',
-            self::MAIN_LINK_FIELD       => '',
-            self::MAIN_UPDATED_FIELD    => '',
-            self::MAIN_AUTHOR_FIELD     => '',
-            self::MAIN_ID_FIELD         => '',
-        ];
     }
 }

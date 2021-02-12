@@ -1,7 +1,8 @@
 <?php
 
-namespace migvitram\xmlgenerator\models\schemas;
+namespace migvitram\xmlgenerator\models\schemas\Sitemap;
 
+use Yii;
 use yii\base\Model;
 
 /**

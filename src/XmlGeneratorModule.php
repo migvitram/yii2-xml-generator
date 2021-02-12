@@ -2,10 +2,11 @@
 
 namespace migvitram\xmlgenerator;
 
-use migvitram\xmlgenerator\models\schemas\AtomSchema;
-use migvitram\xmlgenerator\models\schemas\RssChannel;
-use migvitram\xmlgenerator\models\schemas\RssSchema;
-use migvitram\xmlgenerator\models\schemas\SitemapSchema;
+use Yii;
+use migvitram\xmlgenerator\models\schemas\Atom\AtomSchema;
+use migvitram\xmlgenerator\models\schemas\Rss\RssChannel;
+use migvitram\xmlgenerator\models\schemas\Rss\RssSchema;
+use migvitram\xmlgenerator\models\schemas\Sitemap\SitemapSchema;
 use yii\base\Module as BaseModule;
 
 /**
@@ -47,6 +48,11 @@ class XmlGeneratorModule extends BaseModule
             'suffix' => '.xml',
         ],
         [
+            'pattern' => '<lang>/rss',
+            'route' => 'main/rss',
+            'suffix' => '.xml',
+        ],
+        [
             'pattern' => 'rss',
             'route' => 'main/rss',
             'suffix' => '.xml',
@@ -85,4 +91,15 @@ class XmlGeneratorModule extends BaseModule
         parent::init();
     }
 
+    /**
+     * @param string|null $lang
+     */
+    public function resetLanguage(string $lang = null )
+    {
+        if ($lang) {
+            Yii::$app->language = $lang;
+        }
+
+        static::init();
+    }
 }

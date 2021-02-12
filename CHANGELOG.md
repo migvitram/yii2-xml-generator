@@ -19,3 +19,9 @@
 - Updated models classes namespaces
 - Updated module and bootstrap classes
 - Updated documentation
+
+## Version 1.2.0 [14 February 2021]
+
+- Changed Sitemap, Atom and Rss directories and namespaces
+- Added language reset method for rss.xml different language versions (availabel
+    by <lang1>/rss.xml, <lang2>/rss.xml urls). Previous url pattern keep up.

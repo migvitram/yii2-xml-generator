@@ -67,7 +67,7 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
  
  use yii\base\Model;
  use yii\helpers\Url;
- use migvitram\xmlgenerator\models\schemas\SitemapSchema;
+ use migvitram\xmlgenerator\models\schemas\Sitemap\SitemapSchema;
  
  class Page extends Model
  {
@@ -106,11 +106,11 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
  }
 ```
 
-Method to get data fro rss.xml must return array with next required fields :
+Method to get data for rss.xml must return array with next required fields :
 
 ```php
 
-use migvitram\xmlgenerator\models\schemas\RssSchema;
+use migvitram\xmlgenerator\models\schemas\Rss\RssSchema;
 
 class Page extends Model
  {
@@ -163,7 +163,7 @@ Method to get data for atom.xml must return array with Atom feed required fields
 
 ```php
 
-use migvitram\xmlgenerator\models\schemas\AtomSchema;
+use migvitram\xmlgenerator\models\schemas\Atom\AtomSchema;
 
  class Page extends Model
  {

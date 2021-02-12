@@ -2,6 +2,7 @@
 
 namespace migvitram\xmlgenerator\models\schemas\Sitemap;
 
+use Yii;
 use yii\base\Model;
 
 /**

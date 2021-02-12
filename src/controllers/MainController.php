@@ -49,7 +49,7 @@ class MainController extends Controller
      * Method to get the sitemap.xml file
      * return xml response
      */
-    public function actionIndex()
+    public function actionIndex($lang = null)
     {
         $response = Yii::$app->response;
 
@@ -83,8 +83,12 @@ class MainController extends Controller
      * Method to get the rss.xml file
      * return xml response
      */
-    public function actionRss()
+    public function actionRss($lang = null)
     {
+        if ( $lang ) {
+            XmlGeneratorModule::getInstance()->resetLanguage($lang);
+        }
+
         $response = Yii::$app->response;
 
         $rssChannel = XmlGeneratorModule::getInstance()->rssInstance;

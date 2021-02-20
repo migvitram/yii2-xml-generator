@@ -24,6 +24,7 @@ class SitemapSchema extends Model
     const LAST_MODIFY_FIELD = 'lastmod' ;
     const CHANGE_FREQUENCY_FIELD = 'changefreq' ;
     const PRIORITY_FIELD    = 'priority' ;
+    const ALTERNATES        = 'alternates' ;
 
     /**
      * @param array $params

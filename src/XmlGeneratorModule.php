@@ -35,6 +35,9 @@ class XmlGeneratorModule extends BaseModule
     /** @var RssChannel|null $rssInstance - result object for rss.xml */
     public $rssInstance;
 
+    /** @var array $languages - languages list (for multilingual web-site */
+    public $languages = [];
+
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
         [

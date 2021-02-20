@@ -35,6 +35,7 @@ After installation, modify the web.php config file, modules section:
         'pages' => ['\app\models\Page', 'getPagesForSitemap'],
         'atom' => ['\app\models\Page', 'getItemsForAtom'],
         'rss' => ['\app\models\Page', 'getItemsForRss'],
+        'languages' => ['en', 'fr', 'de'],  // not required
     ]
  ]
 ```
@@ -82,12 +83,20 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
                  'lastmod' => '2016-10-10',
                  'changefreq' => SitemapSchema::CHANG_FREQ_DAY,
                  'priority' => 0.8,
+                 'alternates' => [
+                    'en' => 'https://your.domain/en/page.url',
+                    'fr' => 'https://your.domain/fr/page.url',
+                 ],
              ],
              [
                  'loc' => Url::base(true).'/site/about',
                  'lastmod' => '2016-10-10',
                  'changefreq' => SitemapSchema::CHANG_FREQ_YEAR,
                  'priority' => 0.8,
+                 'alternates' => [
+                    'en' => 'https://your.domain/en/page.url',
+                    'fr' => 'https://your.domain/fr/page.url',
+                 ],
              ],
              [
                  'loc' => Url::base(true).'/site/contact',
@@ -100,11 +109,17 @@ For example, method `getPagesForSitemap` in Page model can be looks like:
                  'lastmod' => '2016-10-10',
                  'changefreq' => 'monthly',
                  'priority' => 0.8,
+                 'alternates' => [
+                    'en' => 'https://your.domain/en/page.url',
+                    'fr' => 'https://your.domain/fr/page.url',
+                 ],
              ],
          ];
      }
  }
 ```
+
+If you are going to make multilingual web-site, then pay attention to `alternates` property
 
 Method to get data for rss.xml must return array with next required fields :
 

@@ -58,7 +58,8 @@ class MainController extends Controller
         $response->format = Response::FORMAT_RAW;
         $response->headers->add('Content-Type', 'text/xml');
         $response->data = $this->renderPartial('sitemapXml', [
-            'sitemap' => $pages
+            'sitemap' => $pages,
+            'languages' => XmlGeneratorModule::getInstance()->languages
         ]);
     }
 
